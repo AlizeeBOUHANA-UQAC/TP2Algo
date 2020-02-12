@@ -10,11 +10,13 @@ public class Main {
 
         ArrayList<Integer> list = InstanceGenerator.generator(tailleList);
         System.out.println(list.toString());
+        long start = System.currentTimeMillis();
         System.out.println(mergeSort(list));
+        System.out.println("Merge Sort done in: " + (System.currentTimeMillis()-start) + " ms");
     }
 
 
-    private static ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
+    static ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
         if(list.isEmpty() || list.size() == 1){
             return list;
         } else { //récursivité
