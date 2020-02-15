@@ -3,18 +3,61 @@ import java.util.*;
 
 public class Main {
 
+    private static final boolean DISPLAY_ARRAYS = false;
+
     public static void main(String args[]){
+
+        //Demaande à l'utilisateur une taille de tableau
         Scanner scan = new Scanner(System.in);
         System.out.println("Quelle taille de tableau voulez vous ?");
         Integer tailleList = Integer.parseInt(scan.nextLine());
 
-        ArrayList<Integer> list = InstanceGenerator.generator(tailleList);
-        System.out.println(list.toString());
-        long start = System.currentTimeMillis();
-        System.out.println(mergeSort(list));
-        System.out.println("Merge Sort done in: " + (System.currentTimeMillis()-start) + " ms");
+        //Prépare la liste d'algorithmes de merge à tester
+        ArrayList<IMergeAlgorithm> algorithms = new ArrayList<>();
+        algorithms.add(new MergeSort());
+        algorithms.add(new ParallelMergeSort());
+
+        //Génère l'instance
+        int[] array = InstanceGenerator.generateRandomArray(tailleList);
+
+        if (DISPLAY_ARRAYS) {
+            //Affiche l'instance si voulu
+            System.out.println("Original array :\n");
+            System.out.println(Arrays.toString(array));
+        }
+
+        //Pour chaque algorithme de Merge
+        for (IMergeAlgorithm algorithm : algorithms) {
+
+            //Créez une copie du tableau original. Sinon lors du second algorithme le tableau sera déjà trié.
+            int[] arrayCopy = Arrays.copyOf(array, array.length);
+
+            System.out.println(algorithm.toString());
+            //Top Chrono
+            long start = System.currentTimeMillis();
+
+            //Tri!
+            algorithm.sort(arrayCopy);
+
+            if (DISPLAY_ARRAYS)
+                System.out.println(Arrays.toString(arrayCopy));
+
+            System.out.println("Done in: " + (System.currentTimeMillis()-start) + " ms\n");
+
+            if (!isArraySorted(arrayCopy)) {
+                System.out.println("Tableau mal trié!");
+            }
+        }
+
     }
 
+    private static boolean isArraySorted(int[] numbers) {
+        for (int i = 0; i < numbers.length - 1; i++) {
+            if (numbers[i] > numbers[i+1])
+                return false;
+        }
+        return true;
+    }
 
     static ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
         if(list.isEmpty() || list.size() == 1){

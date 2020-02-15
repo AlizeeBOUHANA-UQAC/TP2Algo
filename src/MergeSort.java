@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements IMergeAlgorithm {
+
 
     public void sort(int[] numbers) {
         mergeSort(numbers, 0, numbers.length-1);
@@ -13,6 +14,7 @@ public class MergeSort {
             mergeSort(numbers, mid+1, to);
             merge(numbers, from, mid, to);
         }
+
     }
 
     void merge(int[] numbers, int from, int mid, int to) {
@@ -35,5 +37,10 @@ public class MergeSort {
         while (ri < right.length) {
             numbers[from++] = right[ri++];
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Merge Sort";
     }
 }

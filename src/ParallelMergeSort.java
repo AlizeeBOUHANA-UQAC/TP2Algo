@@ -1,14 +1,18 @@
 import java.util.Arrays;
 import java.util.concurrent.RecursiveAction;
 
-public class ParallelMergeSort extends RecursiveAction {
+public class ParallelMergeSort extends RecursiveAction implements IMergeAlgorithm{
 
     // Decides when to fork or compute directly:
     private static final int SORT_THRESHOLD = 128;
 
-    private final int[] values;
-    private final int from;
-    private final int to;
+    private int[] values;
+    private int from;
+    private int to;
+
+    public ParallelMergeSort() {
+
+    }
 
     public ParallelMergeSort(int[] values) {
         this(values, 0, values.length-1);
@@ -18,6 +22,13 @@ public class ParallelMergeSort extends RecursiveAction {
         this.values = values;
         this.from = from;
         this.to = to;
+    }
+
+    public void sort(int[] numbers) {
+        this.values = numbers;
+        this.from = 0;
+        this.to = numbers.length-1;
+        compute();
     }
 
     public void sort() {
@@ -72,5 +83,10 @@ public class ParallelMergeSort extends RecursiveAction {
         while (ri < right.length) {
             values[f++] = right[ri++];
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Parallel Merge Sort";
     }
 }
