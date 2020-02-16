@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MergeSortList implements IMergeAlgorithm {
@@ -16,19 +17,23 @@ public class MergeSortList implements IMergeAlgorithm {
 
         if (!isListSorted()) {
             System.out.println("Liste mal triée!");
+            System.out.println(numbers);
         }
 
-        //System.out.println(numbers);
     }
 
     private ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
         if ( list.isEmpty() || list.size() == 1 ) {
             return list;
         }
-        else { //récursivité
+        else {
+            //récursivité
             ListDivided ld = divide(list);
 
-            return merge(mergeSort(ld.getList1()), mergeSort(ld.getList2()));
+            return merge(
+                    mergeSort(ld.getList1()),
+                    mergeSort(ld.getList2())
+            );
         }
     }
 
@@ -46,28 +51,55 @@ public class MergeSortList implements IMergeAlgorithm {
         else if (list2.isEmpty() ) {
             return list1;
         }
-        else if (list1.get(0) < list2.get(0) ) {
-
-            //premier element de tab1 plus petit
-            ArrayList<Integer> newList = new ArrayList<Integer>();
-            newList.add(list1.get(0)); //ajout 1er element car plus petit dans newList
-            list1.remove(0); //suppression du 1er element deja mis dans newList
-            newList.addAll(merge(list1, list2)); //recursivité
-
-            return newList;
-        }
-        else if ( list1.get(0) >= list2.get(0) ) {
-
-            //premier element de tab2 plus petit
-            ArrayList<Integer> newList = new ArrayList<Integer>();
-            newList.add(list2.get(0)); //ajout 1er element car plus petit dans newList
-            list2.remove(0); //suppression du 1er element deja mis dans newList
-            newList.addAll(merge(list1, list2)); //recursivité
-
-            return newList;
-        }
         else { //erreur
-            return new ArrayList<Integer>();
+
+
+            int i = 0; //index list
+
+
+            /*
+            System.out.println("Merge : ");
+            System.out.println(list1);
+            System.out.println(list2); */
+
+            //On inverse la liste pour prendre les éléments depuis la fin.
+            Collections.reverse(list2);
+
+            while (!list2.isEmpty()) {
+
+                Integer elm = list2.remove(list2.size()-1);
+
+                //Si bien placé en début de liste
+                if (i == 0 && list1.get(0) > elm)
+                {
+                    list1.add(i, elm);
+                }
+                //Si on est au bout de la liste
+                else if (i == list1.size())
+                {
+                    list1.add(i, elm);
+                }
+                //Sinon on avance dans les index jusqu'à être à une bonne place.
+                else {
+
+                    if (i == 0)
+                        i++;
+
+                    while (i < list1.size() &&
+                            !(list1.get(i-1) <= elm && list1.get(i) >= elm )) {
+                        i++;
+                    }
+                    list1.add(i, elm);
+                }
+
+                i++;
+            }
+
+            /*
+            System.out.println("merged :\n");
+            System.out.println(list1);
+            System.out.println(); */
+            return list1;
         }
     }
 

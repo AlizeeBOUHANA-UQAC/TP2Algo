@@ -44,7 +44,8 @@ public class InstanceGenerator {
         ArrayList<Integer> possibleNumbers = generateRandomNumberList(taille);
         int[] array = new int[taille];
         for(int i = 0 ; i<taille ; i++){
-            int number = possibleNumbers.remove(0);
+            //Remove les instances depuis la fin sinon toute la liste est éditée.
+            int number = possibleNumbers.remove(possibleNumbers.size()-1);
             array[i] = number;
         }
         return array;

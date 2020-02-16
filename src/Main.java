@@ -14,7 +14,16 @@ public class Main {
         Integer tailleList = Integer.parseInt(scan.nextLine());
 
         //Génère la/les instances
-        int[] array = InstanceGenerator.generateRandomArray(tailleList);
+        int[] array = InstanceGenerator.generateRandomNumberArray(tailleList);
+
+        if (DISPLAY_ARRAYS) {
+            //Affiche l'instance si voulu
+            System.out.println("Original array :\n");
+            System.out.println(Arrays.toString(array));
+            //System.out.println(copyAsList(array));
+        }
+
+        System.out.println("Fin Génération instance...");
 
         //Prépare la liste d'algorithmes de merge à tester
 
@@ -25,11 +34,7 @@ public class Main {
         algorithms.add(new MergeSortList(copyAsList(array)));
 
 
-        if (DISPLAY_ARRAYS) {
-            //Affiche l'instance si voulu
-            System.out.println("Original array :\n");
-            System.out.println(Arrays.toString(array));
-        }
+        System.out.println("Début calculs...");
 
         //Pour chaque algorithme de Merge
         for (IMergeAlgorithm algorithm : algorithms) {
@@ -52,7 +57,7 @@ public class Main {
     private static ArrayList<Integer> copyAsList(int[] numbers) {
 
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < numbers.length - 1; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             list.add(numbers[i]);
         }
 
