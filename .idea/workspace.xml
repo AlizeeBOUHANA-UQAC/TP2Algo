@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39db5f30-949a-4ca7-9390-b691b14e70c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/MergeSortList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MergeSort/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MergeSort/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comparison.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comparison.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IMergeAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IMergeAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MergeSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParallelMergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParallelMergeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MergeSortList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MergeSortList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
