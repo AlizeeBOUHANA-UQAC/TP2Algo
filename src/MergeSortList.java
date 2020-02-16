@@ -63,7 +63,10 @@ public class MergeSortList implements IMergeAlgorithm {
             System.out.println(list2); */
 
             //On inverse la liste pour prendre les éléments depuis la fin.
+            long start = System.currentTimeMillis();
             Collections.reverse(list2);
+            System.out.println("Reversed in: " + (System.currentTimeMillis()-start) + " ms\n");
+
 
             while (!list2.isEmpty()) {
 
