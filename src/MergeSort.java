@@ -3,7 +3,13 @@ import java.util.Arrays;
 public class MergeSort implements IMergeAlgorithm {
 
 
-    public void sort(int[] numbers) {
+    private int[] numbers;
+
+    public MergeSort(int[] numbers) {
+        this.numbers = numbers;
+
+    }
+    public void sort() {
         mergeSort(numbers, 0, numbers.length-1);
     }
 

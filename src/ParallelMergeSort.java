@@ -6,13 +6,9 @@ public class ParallelMergeSort extends RecursiveAction implements IMergeAlgorith
     // Decides when to fork or compute directly:
     private static final int SORT_THRESHOLD = 128;
 
-    private int[] values;
-    private int from;
-    private int to;
-
-    public ParallelMergeSort() {
-
-    }
+    private final int[] values;
+    private final int from;
+    private final int to;
 
     public ParallelMergeSort(int[] values) {
         this(values, 0, values.length-1);
@@ -22,13 +18,6 @@ public class ParallelMergeSort extends RecursiveAction implements IMergeAlgorith
         this.values = values;
         this.from = from;
         this.to = to;
-    }
-
-    public void sort(int[] numbers) {
-        this.values = numbers;
-        this.from = 0;
-        this.to = numbers.length-1;
-        compute();
     }
 
     public void sort() {

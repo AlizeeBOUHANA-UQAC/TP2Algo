@@ -13,9 +13,9 @@ public class Comparison {
         int[] serial = new Random().ints(100_000_000).toArray();
         int[] parallel = Arrays.copyOf(serial, serial.length);
 
-        MergeSort mergeSort = new MergeSort();
+        MergeSort mergeSort = new MergeSort(serial);
         long start = System.currentTimeMillis();
-        mergeSort.sort(serial);
+        mergeSort.sort();
         System.out.println("Merge Sort done in: " + (System.currentTimeMillis()-start) + " ms");
 
         ParallelMergeSort sorter = new ParallelMergeSort(parallel);
