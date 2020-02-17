@@ -13,6 +13,13 @@ public class MergeSort implements IMergeAlgorithm {
         mergeSort(numbers, 0, numbers.length-1);
     }
 
+    @Override
+    public void displayResult() {
+
+        System.out.println(Arrays.toString(numbers));
+    }
+
+
     void mergeSort(int[] numbers, int from, int to) {
         if (from < to) {
             int mid = from + Math.floorDiv(to-from, 2);

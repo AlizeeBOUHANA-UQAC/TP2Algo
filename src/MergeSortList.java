@@ -6,6 +6,9 @@ public class MergeSortList implements IMergeAlgorithm {
 
     private ArrayList<Integer> numbers;
 
+    private boolean countChoices = true;
+    private int[] counts = new int[3];
+
     public MergeSortList(ArrayList<Integer> numbers) {
         this.numbers = numbers;
     }
@@ -14,12 +17,23 @@ public class MergeSortList implements IMergeAlgorithm {
     public void sort() {
         numbers = mergeSort(numbers);
 
-
+        /*
         if (!isListSorted()) {
             System.out.println("Liste mal triée!");
             System.out.println(numbers);
+        } */
+
+        if (countChoices) {
+            System.out.println("\tInsertion Début : " + counts[0]);
+            System.out.println("\tInsertion Milieu : " + counts[2]);
+            System.out.println("\tInsertion Fin : " + counts[1]);
         }
 
+    }
+
+    @Override
+    public void displayResult() {
+        System.out.println(numbers);
     }
 
     private ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
@@ -51,57 +65,48 @@ public class MergeSortList implements IMergeAlgorithm {
         else if (list2.isEmpty() ) {
             return list1;
         }
-        else { //erreur
+        else {
 
-
-            int i = 0; //index list
-
-
-            /*
-            System.out.println("Merge : ");
-            System.out.println(list1);
-            System.out.println(list2); */
+            if (list2.size() > list1.size()) {
+                //On inverse l'autre des deux listes pour toujours insérer dans la plus grande
+                ArrayList<Integer> temp = list1;
+                list1 = list2;
+                list2 = temp;
+            }
 
             //On inverse la liste pour prendre les éléments depuis la fin.
-            long start = System.currentTimeMillis();
             Collections.reverse(list2);
-            System.out.println("Reversed in: " + (System.currentTimeMillis()-start) + " ms\n");
-
-
+            int i = 0; //index list
             while (!list2.isEmpty()) {
 
                 Integer elm = list2.remove(list2.size()-1);
-
                 //Si bien placé en début de liste
-                if (i == 0 && list1.get(0) > elm)
-                {
+                if (i == 0 && list1.get(0) > elm) {
                     list1.add(i, elm);
+                    if (countChoices)
+                        counts[0]++;
                 }
                 //Si on est au bout de la liste
-                else if (i == list1.size())
-                {
-                    list1.add(i, elm);
+                else if (i == list1.size()) {
+                    list1.add(elm);
+                    if (countChoices)
+                        counts[1]++;
                 }
                 //Sinon on avance dans les index jusqu'à être à une bonne place.
                 else {
-
                     if (i == 0)
                         i++;
+                    if (countChoices)
+                        counts[2]++;
 
-                    while (i < list1.size() &&
-                            !(list1.get(i-1) <= elm && list1.get(i) >= elm )) {
+                    while (i < list1.size() && !(list1.get(i-1) <= elm && list1.get(i) >= elm )) {
                         i++;
                     }
                     list1.add(i, elm);
                 }
-
                 i++;
             }
 
-            /*
-            System.out.println("merged :\n");
-            System.out.println(list1);
-            System.out.println(); */
             return list1;
         }
     }

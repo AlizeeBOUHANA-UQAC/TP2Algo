@@ -25,6 +25,12 @@ public class ParallelMergeSort extends RecursiveAction implements IMergeAlgorith
     }
 
     @Override
+    public void displayResult() {
+
+        System.out.println(Arrays.toString(values));
+    }
+
+    @Override
     protected void compute() {
         if (from < to) {
             int size = to - from;
